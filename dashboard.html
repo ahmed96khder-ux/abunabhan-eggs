@@ -3,16 +3,14 @@
 <title>لوحة التحكم | بيض أبو نبهان</title><meta name="description" content="لوحة تحكم"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#6b3510">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css"></head><body><div class="top"><div class="wrap"><a class="brand" href="index.html"><img src="favicon.svg" alt="" width="34" height="34">لوحة التحكم</a><nav><a href="index.html">رجوع للموقع</a></nav></div></div>
-<main class="wrap"><div class="warn">البيانات هنا بتتخزن في متصفح الجهاز ده بس. مش بتتشارك مع حد ومش بتظهر على جهاز تاني، وبتضيع لو مسحت بيانات المتصفح. اللوحة مفيهاش كلمة سر، وأي حد يفتح الرابط هيشوف لوحة فاضية بتاعته هو، مش بياناتك. <span id="storage"></span></div>
-<div id="dash">
-<section><h2>سعر النهارده</h2><div class="panel"><p style="margin:0">اكتب سعر البورصة للكرتونة وهامشك، واللوحة تحسب سعر البيع ورسالة الصبح.</p>
+<main class="wrap">
+<section id="login" hidden><h2>دخول صاحب المحل</h2><div class="panel"><p style="margin:0">اضغط الزرار وهيوصلك لينك دخول على الإيميل بتاعك. افتحه من نفس الجهاز.</p><div class="btns"><button class="btn primary" id="sendlink">ابعتلي لينك الدخول</button></div><p class="status" id="loginstatus" role="status"></p></div></section>
+<div id="dash" hidden>
+<div class="btns" style="justify-content:flex-start"><button class="btn sm" id="logout">خروج</button></div>
+<section><h2>سعر النهارده</h2><div class="panel"><p style="margin:0">اكتب سعر البورصة للكرتونة وهامشك. اللوحة تحسب سعر البيع، وزرار النشر بيظهره في الصفحة الرئيسية على طول.</p>
 <div class="grid3"><div><label for="b_red">بورصة بيض أحمر</label><input type="number" id="b_red" inputmode="numeric"></div><div><label for="b_white">بورصة بيض أبيض</label><input type="number" id="b_white" inputmode="numeric"></div><div><label for="b_baladi">بورصة بيض بلدي</label><input type="number" id="b_baladi" inputmode="numeric"></div></div>
 <label for="margin">هامشك في الكرتونة (جنيه)</label><input type="number" id="margin" inputmode="numeric">
-<dl id="sell"></dl><div class="msg" id="morning"></div><div class="btns"><button class="btn" id="copymorning">انسخ رسالة الصبح</button></div></div></section>
-<section><h2>نشر السعر على الموقع</h2><div class="panel"><p style="margin:0">انسخ الكود ده والصقه مكان محتوى ملف <bdi>prices.json</bdi> في GitHub (Edit ثم Commit). السعر بيظهر في الصفحة الرئيسية بعد دقيقة أو اتنين.</p><pre id="pjson"></pre><div class="btns"><button class="btn" id="copyjson">انسخ الكود</button></div></div></section>
-<section><h2>الطلبات</h2><div class="panel"><h3 style="margin:0 0 4px">ضيف طلب من رسالة واتساب</h3><p class="note" style="margin-top:0">الصق رسالة الطلب اللي جتلك من الموقع وهتتسجل بالتليفون والعنوان والموقع.</p>
-<textarea id="paste" aria-label="رسالة الطلب"></textarea><div class="btns"><button class="btn primary" id="parse">ضيف من الرسالة</button></div><p class="status" id="parsestatus" role="status"></p>
-<h3 style="margin:24px 0 0">أو سجل طلب بإيدك</h3><label for="o_customer">اسم العميل أو المحل</label><input type="text" id="o_customer"><label for="o_phone">رقم التليفون</label><input type="tel" id="o_phone" inputmode="tel"><label for="o_address">العنوان</label><input type="text" id="o_address">
-<label>عدد الكراتين</label><div class="grid3"><div><label for="oq_red">بيض أحمر</label><input type="number" id="oq_red" min="0" inputmode="numeric" placeholder="0"></div><div><label for="oq_white">بيض أبيض</label><input type="number" id="oq_white" min="0" inputmode="numeric" placeholder="0"></div><div><label for="oq_baladi">بيض بلدي</label><input type="number" id="oq_baladi" min="0" inputmode="numeric" placeholder="0"></div></div><div class="btns"><button class="btn primary" id="addorder">ضيف الطلب</button></div><p class="status" id="addstatus" role="status"></p></div>
-<div class="panel" style="margin-top:16px"><dl id="stats"></dl><div id="orders"></div></div></section>
-<section><h2>العملاء</h2><div class="panel"><dl id="customers"></dl></div></section></div></main><script src="photos.js"></script><script src="site.js"></script></body></html>
+<dl id="sell"></dl><div class="msg" id="morning"></div><div class="btns"><button class="btn green" id="publish">انشر السعر على الموقع</button><button class="btn" id="copymorning">انسخ رسالة الصبح</button></div><p class="status" id="pubstatus" role="status"></p><p class="note" id="current"></p></div></section>
+<section><h2>الطلبات</h2><div class="panel"><dl id="stats"></dl><div id="orders"></div><div class="btns"><button class="btn sm" id="reload">حدّث</button></div></div></section>
+<section><h2>العملاء</h2><div class="panel"><dl id="customers"></dl></div></section></div></main>
+<script src="config.js"></script><script src="site.js"></script><script src="dash.js"></script></body></html>
