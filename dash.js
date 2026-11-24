@@ -38,11 +38,11 @@ function render(){
   var h='';orders.forEach(function(o){
     var it=TYPES.filter(function(t){return o[t.key]>0}).map(function(t){return t.name+': '+o[t.key]+' كرتونة'}).join('، ');
     var ph=String(o.phone).replace(/[^0-9+]/g,''),wa=ph.replace(/^\+/,'').replace(/^0/,'20');
-    h+='<div class="order'+(o.done?' done':'')+'"><b>'+esc(o.name)+(o.done?' (اتسلم)':'')+' - '+tq(o)+' كرتونة</b><div class="meta">'+esc(it)+' | '+esc(new Date(o.created_at).toLocaleString('ar-EG'))+'</div>'
+    h+='<div class="order'+(o.done?' done':'')+'"><div class="meta"><b>'+(o.done?'✅ اتسلم':'🟡 لسه ما اتسلمش')+'</b></div><b>'+esc(o.name)+' - '+tq(o)+' كرتونة</b><div class="meta">'+esc(it)+' | '+esc(new Date(o.created_at).toLocaleString('ar-EG'))+'</div>'
      +'<div class="meta">تليفون: <a href="tel:'+esc(ph)+'"><bdi>'+esc(o.phone)+'</bdi></a> | <a href="https://wa.me/'+esc(wa)+'" target="_blank" rel="noopener">واتساب</a></div>'
      +(o.address?'<div class="meta">العنوان: '+esc(o.address)+'</div>':'')
      +(o.map_url&&/^https:\/\/www\.google\.com\/maps\?q=-?[0-9.]+,-?[0-9.]+$/.test(o.map_url)?'<div class="meta"><a href="'+o.map_url+'" target="_blank" rel="noopener">افتح الموقع على الخريطة</a></div>':'')
-     +'<div class="btns"><button class="btn sm" data-a="done" data-id="'+o.id+'">'+(o.done?'رجّعه لسه':'اتسلم')+'</button><button class="btn sm" data-a="del" data-id="'+o.id+'">امسح</button></div></div>';
+     +'<div class="btns"><button class="btn sm" data-a="done" data-id="'+o.id+'">'+(o.done?'رجّعه لسه':'تم التسليم')+'</button><button class="btn sm" data-a="del" data-id="'+o.id+'">امسح</button></div></div>';
   });
   $('orders').innerHTML=h||'<p>مفيش طلبات لسه.</p>';
   var cm={},names=[];orders.forEach(function(o){var c=cm[o.name];if(!c){c=cm[o.name]={phone:'',q:0};names.push(o.name)}c.phone=o.phone;c.q+=tq(o)});
